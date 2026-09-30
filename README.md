@@ -243,8 +243,8 @@ Values were read back in the same order they were written, confirming correct fi
 
 ### 6.4 Waveform
 
-![Simulation waveform](https://drive.google.com/file/d/14azgrFxHB0P_JhzTckiF8hkJ2faXNAbU/view?usp=sharing)
-![Dollar Monitor](https://drive.google.com/file/d/1E9Gn_Maxvh33BU8Bjx4-QpOrWk0E4CWo/view?usp=sharing)
+<img width="1091" height="412" alt="Screenshot 2026-09-30 125755" src="https://github.com/user-attachments/assets/1cbe9a4d-97f0-4a60-803f-349443c6c7b6" />
+<img width="895" height="400" alt="Screenshot 2026-09-30 125904" src="https://github.com/user-attachments/assets/1cf68f71-5194-4ecf-816b-dd97be49eb3f" />
 
 *ModelSim waveform showing ALU results being written to and read from the FIFO.*
 
@@ -304,6 +304,6 @@ Values were read back in the same order they were written, confirming correct fi
 **Jaimin Doshi**
 B.Tech, Electronics and Communication Engineering
 
-- GitHub: [your-username](https://github.com/JAIMIN2711)
-- LinkedIn: [your-profile](https://www.linkedin.com/in/jaimin-doshi)
+- GitHub: [click-here](https://github.com/JAIMIN2711)
+- LinkedIn: [click-here](https://www.linkedin.com/in/jaimin-doshi)
 - Email: doshijaimin27@gmail.com
