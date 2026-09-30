@@ -1,0 +1,41 @@
+module alu_fifo_top (
+    input clk,
+    input reset,
+    input [7:0] A,
+    input [7:0] B,
+    input [2:0] opcode,
+    input write_en,
+    input read_en,
+    output [7:0] alu_result,
+    output [7:0] data_out,
+    output carry,
+    output zero,
+    output full,
+    output empty
+);
+
+wire [7:0] result_wire;
+
+assign alu_result = result_wire;
+
+alu ALU_UNIT (
+    .A(A),
+    .B(B),
+    .opcode(opcode),
+    .result(result_wire),
+    .carry(carry),
+    .zero(zero)
+);
+
+fifo FIFO_UNIT (
+    .clk(clk),
+    .reset(reset),
+    .data_in(result_wire),
+    .write_en(write_en),
+    .read_en(read_en),
+    .data_out(data_out),
+    .full(full),
+    .empty(empty)
+);
+
+endmodule
