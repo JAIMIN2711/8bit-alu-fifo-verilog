@@ -1,0 +1,118 @@
+`timescale 1ns/1ps
+
+module alu_fifo_tb;
+
+reg clk;
+reg reset;
+reg [7:0] A;
+reg [7:0] B;
+reg [2:0] opcode;
+reg write_en;
+reg read_en;
+
+wire [7:0] alu_result;
+wire [7:0] data_out;
+wire carry;
+wire zero;
+wire full;
+wire empty;
+
+alu_fifo_top DUT (
+    .clk(clk),
+    .reset(reset),
+    .A(A),
+    .B(B),
+    .opcode(opcode),
+    .write_en(write_en),
+    .read_en(read_en),
+    .alu_result(alu_result),
+    .data_out(data_out),
+    .carry(carry),
+    .zero(zero),
+    .full(full),
+    .empty(empty)
+);
+
+always #5 clk = ~clk;
+
+initial begin
+    clk = 0;
+    reset = 1;
+    A = 0;
+    B = 0;
+    opcode = 0;
+    write_en = 0;
+    read_en = 0;
+
+    #10;
+    reset = 0;
+
+    // Test 1: ADD: 10 + 5 = 15
+    A = 8'd10;
+    B = 8'd5;
+    opcode = 3'b000;
+    #2;
+    write_en = 1;
+    #10;
+    write_en = 0;
+
+    // Test 2: SUB: 20 - 8 = 12
+    A = 8'd20;
+    B = 8'd8;
+    opcode = 3'b001;
+    #2;
+    write_en = 1;
+    #10;
+    write_en = 0;
+
+    // Test 3: AND: AA & CC = 88
+    A = 8'hAA;
+    B = 8'hCC;
+    opcode = 3'b010;
+    #2;
+    write_en = 1;
+    #10;
+    write_en = 0;
+
+    // Test 4: OR: AA | CC = EE
+    A = 8'hAA;
+    B = 8'hCC;
+    opcode = 3'b011;
+    #2;
+    write_en = 1;
+    #10;
+    write_en = 0;
+
+    // Read four FIFO entries
+    read_en = 1;
+    #10;
+    read_en = 0;
+
+    #10;
+    read_en = 1;
+    #10;
+    read_en = 0;
+
+    #10;
+    read_en = 1;
+    #10;
+    read_en = 0;
+
+    #10;
+    read_en = 1;
+    #10;
+    read_en = 0;
+
+    #20;
+    $finish;
+end
+
+initial begin
+    $monitor(
+        "Time=%0t | A=%h | B=%h | Opcode=%b | ALU=%h | Write=%b | Read=%b | FIFO_Out=%h | Full=%b | Empty=%b",
+        $time, A, B, opcode, alu_result,
+        write_en, read_en, data_out, full, empty
+    );
+end
+
+endmodule
